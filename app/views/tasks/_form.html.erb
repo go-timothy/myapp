@@ -1,0 +1,27 @@
+<%= form_with model: @task do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+    <% @task.errors.full_messages_for(:title).each do |message| %>
+      <div class="error-message"><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :detail %><br>
+    <%= form.text_area :detail %>
+    <% @task.errors.full_messages_for(:detail).each do |message| %>
+      <div class="error-message"><%= message %></div>
+    <% end %>
+  </div>
+  <br />
+  <div>
+    <%= form.submit %>
+  </div>
+  <ul class="errors container">
+    <% @task.errors.full_messages().each do |message| %>
+      <li>
+        <div class="error-message">Error: <%= message %></div>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

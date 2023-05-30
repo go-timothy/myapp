@@ -1,0 +1,48 @@
+.task-container {
+    background-color: antiquewhite;
+}
+
+.add-task {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.add-task * {
+    margin-left: 5px;
+}
+
+.row {
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+
+.md-8 {
+    width: 67%;
+    overflow: scroll;
+}
+
+.md-4 {
+    width: 33%;
+}
+
+.task-actions {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: aqua;
+}
+
+.task-actions * {
+    padding: 3px;
+}
+
+button a {
+    text-decoration: none;
+}
+
+.error-message {
+    color: red;
+    /* margin-bottom: 5px; */
+}

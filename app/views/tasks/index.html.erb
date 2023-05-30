@@ -1,0 +1,33 @@
+<section>
+  <div class="add-task">
+    <button>
+      <%= link_to "New Task", new_task_path %>
+    </button>
+    <h3>Total tasks: <%= @tasks.count %></h3>
+  </div>
+  <ol>
+    <% @tasks.each do | task | %>
+      <li>
+        <div class="task-container">
+          <div class="row">
+            <div class="md-8">
+              <div>Title: <%= task.title %></div>
+              <div>Detail: <%= task.detail %></div>
+            </div>
+            <div class="md-4 task-actions">
+              <button class="edit-task">
+                <%= link_to "Edit", task %>
+              </button>
+              <button class="delete-task">
+                <%= link_to "Destroy", task_path(task), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %>
+              </button>
+            </div>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</section>
