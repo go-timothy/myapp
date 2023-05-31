@@ -7,12 +7,12 @@ class TaskPolicy < ApplicationPolicy
     end
   
     def index?
-      false
+      true
       # if set to false - no one will have access
     end
   
     def show?
-      false
+      create?
     end
   
     # Same as for create 
