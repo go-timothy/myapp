@@ -1,16 +1,16 @@
 require 'faker'
 
 FactoryBot.define do
-    factory :user do
-        id { 1 }
-        email { Faker::Internet.email }
-        password { "12fhf456465asA34" }
-        isAdmin { true }
+  factory :user do
+    trait :admin do
+      email { Faker::Internet.email }
+      password { Faker::Internet.password }
+      isAdmin { true }
     end
 
-    factory :normalUser do
-        id { 2 }
-        email { Faker::Internet.email }
-        isAdmin { false }
+    trait :normalUser do
+      email { Faker::Internet.email }
+      isAdmin { false }
     end
   end
+end

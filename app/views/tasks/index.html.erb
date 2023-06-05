@@ -18,12 +18,10 @@
               <button class="edit-task">
                 <%= link_to "Edit", task %>
               </button>
-              <button class="delete-task">
-                <%= link_to "Destroy", task_path(task), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %>
-              </button>
+              <div class="delete-task">
+                <%= button_to 'Destroy', task_path(task), method: :delete,
+  form: {data: {turbo_confirm: 'Are you sure?'}} %>
+              </div>
             </div>
           </div>
         </div>
