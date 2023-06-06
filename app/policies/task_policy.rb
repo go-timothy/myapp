@@ -11,7 +11,7 @@ class TaskPolicy < ApplicationPolicy
   end
 
   def show?
-    user.has_role?(:read_task, task)
+    user.has_role?(:read_task)
   end
 
   def new?
@@ -23,14 +23,14 @@ class TaskPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.has_role?(:update_task, task)
+    user.has_role?(:update_task)
   end
 
   def update?
-    user.has_role?(:update_task, task)
+    user.has_role?(:update_task)
   end
 
   def destroy?
-    user.has_role?(:delete, task)
+    user.has_role?(:delete_task)
   end
 end

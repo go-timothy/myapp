@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   rolify
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -11,5 +12,8 @@ class User < ApplicationRecord
 
   def assign_default_role
     add_role(:create_task)
+    add_role(:read_task)
+    add_role(:update_task)
+    add_role(:delete_task)
   end
 end
