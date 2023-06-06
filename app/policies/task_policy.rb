@@ -8,34 +8,29 @@ class TaskPolicy < ApplicationPolicy
 
   def index?
     user.present?
-    # if set to false - no one will have access
   end
 
   def show?
-    create?
+    user.has_role?(:read_task)
   end
 
-  # Same as for create
   def new?
-    create?
+    user.has_role?(:create_task)
   end
 
-  # Same as that of the update.
-  def edit?
-    update?
-  end
-
-  # Only admin is allowed to update the task and only if task is not published
-  def update?
-    user.isAdmin?
-  end
-
-  # Only admin is allowed to create the task.
   def create?
-    user.isAdmin?
+    user.has_role?(:create_task)
+  end
+
+  def edit?
+    user.has_role?(:update_task)
+  end
+
+  def update?
+    user.has_role?(:update_task)
   end
 
   def destroy?
-    user.isAdmin?
+    user.has_role?(:delete_task)
   end
 end
