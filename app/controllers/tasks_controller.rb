@@ -11,32 +11,49 @@ class TasksController < ApplicationController
     @task = authorize Task.new
   end
 
-  def show
-  end
+  def show; end
 
   def create
     @task = authorize Task.new(task_params)
     @task.user_id = current_user.id
     if @task.save
-      redirect_to action: 'index'
+      render json: {
+        success: true,
+        data: @task
+      }
     else
-      render :new, status: :unprocessable_entity
+      render json: {
+        success: false,
+        data: @task
+      }
     end
   end
 
   def update
     if @task.update(task_params)
-      redirect_to action: 'index'
+      render json: {
+        success: true,
+        data: @task
+      }
     else
-      render :new, status: :unprocessable_entity
+      render json: {
+        success: false,
+        data: @task
+      }
     end
   end
 
   def destroy
     if @task.destroy
-      redirect_to action: 'index'
+      render json: {
+        success: true,
+        data: @task
+      }
     else
-      render :new, status: :unprocessable_entity
+      render json: {
+        success: false,
+        data: @task
+      }
     end
   end
 
