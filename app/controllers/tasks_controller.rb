@@ -1,18 +1,21 @@
 class TasksController < ApplicationController
     before_action :authenticate_user!
 
+    before_action :prepare_task, only: %i[show update destroy] do
+        @task = authorize Task.find(params[:id])
+    end
+
     def index
-        @tasks = Task.where(user_id: current_user.id)
+        @tasks = authorize Task.where(user_id: current_user.id)
     end
 
     def new
         @task = authorize Task.new
     end
-
+    
     def show
-        @task = authorize Task.find(params[:id])
     end
-
+    
     def create
         @task = authorize Task.new(task_params)
         @task.user_id = current_user.id
@@ -24,8 +27,6 @@ class TasksController < ApplicationController
     end
 
     def update
-        @task = authorize Task.find(params[:id])
-
         if @task.update(task_params)
             redirect_to action: "index"
         else
@@ -34,8 +35,6 @@ class TasksController < ApplicationController
     end
 
     def destroy
-        @task = authorize Task.find(params[:id])
-
         if @task.destroy()
             redirect_to action: "index"
         else
